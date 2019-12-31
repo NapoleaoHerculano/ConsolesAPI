@@ -23,7 +23,8 @@ public class ConsoleService {
 	//Get-By-ID
 	public Console find(Integer id) {
 		Optional<Console> obj = repository.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new com.treino.consoles.services.exceptions.ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Console.class.getName()));
 	}
 	
 	//POST

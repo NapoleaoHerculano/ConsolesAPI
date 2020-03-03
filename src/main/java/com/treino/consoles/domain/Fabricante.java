@@ -4,11 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Fabricante implements Serializable{
@@ -23,7 +19,7 @@ public class Fabricante implements Serializable{
 	private String pais;
 	private String anoFundacao;
 	
-	@OneToMany(mappedBy="fabricante")
+	@OneToMany(mappedBy="fabricante", cascade = CascadeType.ALL)
 	private List<Console> consoles = new ArrayList<>();
 	
 	public Fabricante() {

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import com.treino.consoles.domain.Console;
 import com.treino.consoles.domain.Fabricante;
 import com.treino.consoles.repositories.FabricanteRepository;
 
@@ -46,7 +47,8 @@ public class FabricanteService {
 	//GET-BY-ID
 	public Fabricante find(Integer id) {
 		Optional<Fabricante> obj = repository.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(() -> new com.treino.consoles.services.exceptions.ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + id + ", Tipo: " + Console.class.getName()));
 	}
 	
 	private void auxiliarUpdate(Fabricante newFab, Fabricante oldFab) {

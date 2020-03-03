@@ -16,7 +16,7 @@ import com.treino.consoles.domain.Fabricante;
 import com.treino.consoles.services.FabricanteService;
 
 @RestController
-@RequestMapping(value="/fabricantes")
+@RequestMapping(value="/v1/api/fabricantes")
 public class FabricanteController {
 	
 	@Autowired

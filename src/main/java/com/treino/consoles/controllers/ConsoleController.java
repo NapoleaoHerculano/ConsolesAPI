@@ -17,7 +17,7 @@ import com.treino.consoles.services.ConsoleService;
 
 
 @RestController
-@RequestMapping("/consoles")
+@RequestMapping("/v1/api/consoles")
 public class ConsoleController {
 	
 	@Autowired

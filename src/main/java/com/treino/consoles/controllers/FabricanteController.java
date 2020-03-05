@@ -2,7 +2,9 @@ package com.treino.consoles.controllers;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import com.treino.consoles.dto.FabricanteDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,12 +23,6 @@ public class FabricanteController {
 	
 	@Autowired
 	FabricanteService service;
-	
-	//Get-All-Fabricantes
-	@RequestMapping(method=RequestMethod.GET)
-	public List<Fabricante> listAll(){
-		return service.listAll();
-	}
 	
 	//Get-By-ID
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
@@ -57,6 +53,13 @@ public class FabricanteController {
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
+	}
+
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity <List<FabricanteDTO>> listAll(){
+		List<Fabricante> list = service.listAll();
+		List<FabricanteDTO> listDto = list.stream().map(obj -> new FabricanteDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
 	}
 	
 }

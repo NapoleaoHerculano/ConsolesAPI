@@ -25,8 +25,9 @@ public class ConsoleController {
 	
 	//GET-ALL
 	@RequestMapping(method=RequestMethod.GET)
-	public List<Console> listAll(){
-		return service.listAll();
+	public ResponseEntity<List<Console>> listAll(){
+		List<Console> list = service.listAll();
+		return ResponseEntity.ok().body(list);
 	}
 	
 	//POST
